@@ -4,6 +4,19 @@
   
   
   <entry>
+    <title>针对hadoop启动之后jps没有datanote信息的解决办法</title>
+    <link href="/2021/03/26/%E9%92%88%E5%AF%B9hadoop%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8Ejps%E6%B2%A1%E6%9C%89datanote%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/"/>
+    <url>/2021/03/26/%E9%92%88%E5%AF%B9hadoop%E5%90%AF%E5%8A%A8%E4%B9%8B%E5%90%8Ejps%E6%B2%A1%E6%9C%89datanote%E4%BF%A1%E6%81%AF%E7%9A%84%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    
+    <content type="html"><![CDATA[<h2 id="原因"><a href="#原因" class="headerlink" title="原因"></a>原因</h2><p>由于Hadoop多次格式化，导致<font color = red >namenode和datanode的clusterID不一致</font>，进一步导致无法start datanode </p><h2 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h2><ul><li><p>首先确认namenode的clusterID和datanode的clusterID是否一致：</p><p>  找到记录namenode 和 datanode clusterID 的文件位置，我的服务器上该文件的地址为：<br><code>/usr/local/hadoop/logs/tmp/dfs/data/current/VERSION  ##记录datanoded的clusterID的文件</code></p><p>  <code>/usr/local/hadoop/logs/tmp/dfs/name/current/VERSION  ##记录namenoded的clusterID的文件</code></p></li><li><p>cat 文件内容</p><p>  <code>cat /usr/local/hadoop/logs/tmp/dfs/data/current/VERSION | grep &#39;clusterID&#39;</code></p><p>  <code>cat /usr/local/hadoop/logs/tmp/dfs/name/current/VERSION | grep &#39;clusterID&#39;</code></p></li><li><p>对比两个ID确实不相同</p></li><li><p>将datanode的clusterID修改为namenode的clusterID<br><code>vim /usr/local/hadoop/logs/tmp/dfs/data/current/VERSION</code></p></li></ul>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>test-my_site</title>
     <link href="/2021/03/26/test-my-site/"/>
     <url>/2021/03/26/test-my-site/</url>
